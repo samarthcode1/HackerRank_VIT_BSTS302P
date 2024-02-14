@@ -31,7 +31,7 @@ public class Solution {
             arr[i]=odd.get(i);
         }
         int j=0;
-        for(int i=odd.size();i<odd.size()+even.size();i++)
+        for(int i=odd.size();i<m;i++)
         {
             arr[i]=even.get(j);
             j++;
