@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        PriorityQueue<ArrayList<Integer>>pq=new PriorityQueue<>((a,b)->a.get(1) - b.get(1));
+        int n=sc.nextInt();
+        while(n!=4){
+            if(n==1){
+                int data=sc.nextInt();
+                int pri=sc.nextInt();
+                ArrayList<Integer>arr=new ArrayList();
+                arr.add(data);
+                arr.add(pri);
+                pq.add(arr);
+            }
+            else if(n==2){
+                if(pq.isEmpty()){
+                    System.out.println("Error");
+                }
+                else{
+                    pq.poll();
+                }
+            }
+            else if(n==3){
+                if(pq.isEmpty()){
+                    System.out.println("Empty");
+                }
+                else{
+                    System.out.print("Queue: ");
+                    for(ArrayList<Integer> p:pq){
+                        for(int a:p){
+                            System.out.print(a+" ");
+                        }
+                    }
+                    System.out.println();
+                }
+            }
+            else{
+                System.out.println("Wrong choice");
+            }
+            n=sc.nextInt();
+        }
+    }
+}
