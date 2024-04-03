@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    static Scanner sc = new Scanner(System.in);
+    static class TreeNode{
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(){
+            val = -1;
+            left = null;
+            right = null;
+        }
+        TreeNode(int val){
+            this.val = val;
+            left = null;
+            right = null;
+        }
+    }
+    public static void rightSideView(TreeNode root,List<Integer> result) {
+        rightView(root, result, 0);
+    }
+    
+    public static void rightView(TreeNode curr, List<Integer> result, int currDepth){
+        if(curr == null){
+            return;
+        }
+        if(currDepth == result.size()){
+            result.add(curr.val);
+        }
+        
+        rightView(curr.right, result, currDepth + 1);
+        rightView(curr.left, result, currDepth + 1);
+        
+    }
+    public static void main(String[] args) {
+        String str = sc.nextLine();
+        String[] input = str.split(" ");
+        int n = input.length;
+        int[] arr = new int[n];
+        for(int i = 0; i<n; i++){
+            arr[i] = Integer.parseInt(input[i]);
+        }
+        
+        if(n == 0){
+            return;
+        }
+        TreeNode head = new TreeNode(arr[0]);
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(head);
+        for(int i = 1; i<n; i+=2){
+            TreeNode front = q.remove();
+            if(arr[i] != -1){
+                front.left = new TreeNode(arr[i]);
+                q.add(front.left);
+            }
+            
+            if(arr[i+1] != -1){
+                front.right = new TreeNode(arr[i+1]);
+                q.add(front.right);
+            }
+        }
+        q.clear();
+        q.add(head);
+        q.add(null);
+        TreeNode prev = null;
+        List<Integer> result = new ArrayList<Integer>();
+        rightSideView(head,result);
+        for(Integer i: result){
+            System.out.print(i + " ");
+        }
+    }
+}
