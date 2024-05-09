@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    static boolean check(int arr[],int k,int n){
+        int count;
+        for(int i=0;i<n;i++){
+            count=0;
+            for(int j=0;j<n;j++){
+                if(arr[i]==arr[j]){
+                    count++;
+                }
+                if(count>2*k){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        String input[] = str.split(" ");
+        int n = input.length;
+        int arr[] = new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(input[i]);
+        }
+        int k = sc.nextInt();
+        if(check(arr,k,n)){
+            System.out.print("Yes");
+        }
+        else{
+            System.out.print("No");
+        }
+            
+    }
+}
